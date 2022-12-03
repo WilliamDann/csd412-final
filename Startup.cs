@@ -28,6 +28,7 @@ namespace csd412_final
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
