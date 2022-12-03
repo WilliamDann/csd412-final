@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using csd412_final.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace csd412_final.Data
 {
-    public class csd412_finalContext : IdentityDbContext<IdentityUser>
+    public class csd412_finalContext : IdentityDbContext<csd412_finalUser>
     {
         public csd412_finalContext(DbContextOptions<csd412_finalContext> options)
             : base(options)
