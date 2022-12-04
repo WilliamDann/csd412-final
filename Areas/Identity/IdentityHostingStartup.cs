@@ -21,7 +21,7 @@ namespace csd412_final.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("csd412_finalContextConnection")));
 
-                services.AddDefaultIdentity<csd412_finalUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<csd412_finalUser>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<csd412_finalContext>();
             });
         }
