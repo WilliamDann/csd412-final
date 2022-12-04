@@ -24,7 +24,7 @@ namespace csd412_final.Data
                 v => v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(val => val).ToArray());
 
             _ = modelBuilder.Entity<Notecards>()
-                    .Property(e => e.Id)
+                    .Property(e => e.Decoys)
                     .HasConversion(converter);
         }
         

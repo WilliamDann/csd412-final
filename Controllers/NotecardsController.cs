@@ -54,7 +54,7 @@ namespace csd412_final.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Question,Answer")] Notecards notecards)
+        public async Task<IActionResult> Create([Bind("Id,Question,Answer,Decoys")] Notecards notecards)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace csd412_final.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Question,Answer")] Notecards notecards)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Question,Answer,Decoys")] Notecards notecards)
         {
             if (id != notecards.Id)
             {
