@@ -17,6 +17,10 @@ namespace csd412_final.Data
 
         public DbSet<csd412_final.Models.Notecards> Notecards { get; set; }
 
+        public DbSet<Collection> Collection { get; set; }
+
+        //public DbSet<csd412_final.Models.Collection> Collection { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var converter = new ValueConverter<string[], string>(
@@ -28,7 +32,5 @@ namespace csd412_final.Data
                     .HasConversion(converter);
         }
 
-        public DbSet<csd412_final.Models.Collection> Collection { get; set; }
-        
     }
 }
