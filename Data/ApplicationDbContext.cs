@@ -27,6 +27,8 @@ namespace csd412_final.Data
                     .Property(e => e.Decoys)
                     .HasConversion(converter);
         }
+
+        public DbSet<csd412_final.Models.Collection> Collection { get; set; }
         
     }
 }
