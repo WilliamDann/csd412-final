@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using csd412_final.Data;
 
 namespace csd412_final
 {
@@ -26,9 +27,13 @@ namespace csd412_final
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDBContext>(options =>
+            options.UseSqlServer(
+                Configuration.GetConnectionString("csd412_finalContextConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
