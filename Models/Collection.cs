@@ -11,9 +11,5 @@ namespace csd412_final.Models
         public string Name { get; set; } = "";
 
         public string Description { get; set; } = "";
-
-        //add this field after Notecard Model implemented
-        // public card [] noteCards { get; set; }
-
     }
 }
