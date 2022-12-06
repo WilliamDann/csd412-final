@@ -1,4 +1,4 @@
-﻿@model csd412_final.Models.Notecards
+@model csd412_final.Models.Notecards
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateOnCollection">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Question" class="control-label"></label>
@@ -26,6 +26,11 @@
                 <label asp-for="Decoys" class="control-label"></label>
                 <input asp-for="Decoys" class="form-control" />
                 <span asp-validation-for="Decoys" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="CollectionID" class="control-label"></label>
+                <input asp-for="CollectionID" class="form-control" />
+                <span asp-validation-for="CollectionID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
