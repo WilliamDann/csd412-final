@@ -7,8 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateOnCollection" asp-route-id="@Model.ElementAt(0).CollectionID">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
