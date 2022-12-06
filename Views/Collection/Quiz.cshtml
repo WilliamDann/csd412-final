@@ -99,7 +99,7 @@ function onIncorrect()
 </div>
 
 <div>
-    <a asp-controller="Notecards" asp-action="GetOnCollection" asp-route-id="@Model.ElementAt(0).CollectionID">Back to Collection</a>
+    <a asp-controller="Notecards" asp-action="GetOnCollection" asp-route-id="@this.ViewContext.RouteData.Values["collectionID"]">Back to Collection</a>
 </div>
 
 <script>
