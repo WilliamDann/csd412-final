@@ -14,9 +14,6 @@ function showCard()
     let front = document.querySelector("#front");
     let back  = document.querySelector("#back");
 
-    console.log(front);
-    console.log(back);
-
     front.querySelector('#cardMainDisplay').innerHTML = cards[counter].question;
     back.querySelector('#correct').innerHTML          = cards[counter].answer;
     back.querySelector('#incorrect').innerHTML        = cards[counter].decoys;
@@ -43,6 +40,7 @@ function onCorrect()
     alert("Correct");
     counter += 1;
     showCard();
+    flipCard();
 }
 
 function onIncorrect()
