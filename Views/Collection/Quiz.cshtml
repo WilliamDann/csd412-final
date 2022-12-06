@@ -16,7 +16,14 @@ function showCard()
 
     front.querySelector('#cardMainDisplay').innerHTML = cards[counter].question;
     back.querySelector('#correct').innerHTML          = cards[counter].answer;
-    back.querySelector('#incorrect').innerHTML        = cards[counter].decoys;
+    back.querySelector('#decoyContainer').innerHTML   = "";
+    for (let decoy of cards[counter].decoys)
+    {
+        let btn = document.createElement('button');
+        btn.onclick = 'onIncorrect()';
+        btn.innerHTML = decoy;
+        back.querySelector('#decoyContainer').appendChild(btn);
+    }
 }
 
 function toggleVisibility(elem)
@@ -86,7 +93,7 @@ function onIncorrect()
 
     <div class="card" id="back" style="display: none;">
         <button id="correct"   onclick="onCorrect()"></button>
-        <button id="incorrect" onclick="onIncorrect()"></button>
+        <div id="decoyContainer"></div>
         <button class="flipbutton" onclick="flipCard()">Flip</button>
     </div><br>
 </div>
