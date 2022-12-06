@@ -145,6 +145,20 @@ namespace csd412_final.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Collection/Quiz/5
+        [Route("Collection/Quiz/{collectionID}")]
+        public async Task<IActionResult> Quiz(int collectionID)
+        {
+            var all = _context.Notecards.ToList();
+            var found = new List<Notecards>();
+
+            foreach (var card in all)
+                if (card.CollectionID == collectionID)
+                    found.Add(card);
+
+            return View(found);
+        }
+
         private bool CollectionExists(int id)
         {
             return _context.Collection.Any(e => e.Id == id);

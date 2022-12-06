@@ -11,6 +11,6 @@ namespace csd412_final.Models
         public String Question { get; set; } = "";
         public String Answer { get; set; } = "";
         public string[] Decoys { get; set; }
-        
+        public int CollectionID { get; set; }
     }
 }

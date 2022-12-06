@@ -49,12 +49,20 @@ namespace csd412_final.Controllers
             return View();
         }
 
+        // GET: Notecards1/CreateOnCollection
+        [Route("Notecards/CreateOnCollection/{collectionID}")]
+        public IActionResult CreateOnCollection(string collectionID)
+        {
+            ViewBag.collectionID = collectionID;
+            return View();
+        }
+
         // POST: Notecards1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Question,Answer,Decoys")] Notecards notecards)
+        public async Task<IActionResult> Create([Bind("Id,Question,Answer,Decoys,CollectionID")] Notecards notecards)
         {
             if (ModelState.IsValid)
             {
@@ -143,6 +151,20 @@ namespace csd412_final.Controllers
             _context.Notecards.Remove(notecards);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Notecards1/GetOnCollection
+        [Route("Notecards/GetOnCollection/{collectionID}")]
+        public IActionResult GetOnCollection(int collectionID)
+        {
+            var all = _context.Notecards.ToList();
+            var found = new List<Notecards>();
+
+            foreach (var card in all)
+                if (card.CollectionID == collectionID)
+                    found.Add(card);
+
+            return View(found);
         }
 
         private bool NotecardsExists(int id)

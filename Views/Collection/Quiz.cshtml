@@ -1,0 +1,100 @@
+@model IEnumerable<csd412_final.Models.Notecards>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<script>
+
+let cards   = @Html.Raw(Json.Serialize(Model));
+let counter = 0;
+
+function showCard()
+{
+    let front = document.querySelector("#front");
+    let back  = document.querySelector("#back");
+
+    front.querySelector('#cardMainDisplay').innerHTML = cards[counter].question;
+    back.querySelector('#correct').innerHTML          = cards[counter].answer;
+    back.querySelector('#incorrect').innerHTML        = cards[counter].decoys;
+}
+
+function toggleVisibility(elem)
+{
+    if (elem.style.display == 'none')
+        return elem.style.display = 'block';
+    elem.style.display = 'none';
+}
+
+function flipCard()
+{
+    let front = document.querySelector("#front");
+    let back  = document.querySelector("#back");
+
+    toggleVisibility(front);
+    toggleVisibility(back);
+}
+
+function onCorrect()
+{
+    alert("Correct");
+    counter += 1;
+    showCard();
+    flipCard();
+}
+
+function onIncorrect()
+{
+    alert("Incorrect");
+}
+</script>
+
+<style>
+.card
+{
+    background: #fdf7ef;
+    box-shadow: 6px 6px 5px gray;
+    width: 490px;
+    height: 300px;
+    padding: 5px;
+}
+
+.flipbutton
+{
+    width: 100px;
+    position:absolute;
+    bottom:0;
+    right:0;
+    background-color: rgba(79, 173, 201, 0.8);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+<h1>Quiz</h1>
+
+<div>
+    <div class="card" id="front">
+        <p id="cardMainDisplay"></p>
+        <button class="flipbutton" onclick="flipCard()">Flip</button>
+    </div><br>
+
+    <div class="card" id="back" style="display: none;">
+        <button id="correct"   onclick="onCorrect()"></button>
+        <button id="incorrect" onclick="onIncorrect()"></button>
+        <button class="flipbutton" onclick="flipCard()">Flip</button>
+    </div><br>
+</div>
+
+<div>
+    <a asp-controller="Notecards" asp-action="GetOnCollection" asp-route-id="@Model.ElementAt(0).CollectionID">Back to Collection</a>
+</div>
+
+<script>
+showCard();
+</script>
