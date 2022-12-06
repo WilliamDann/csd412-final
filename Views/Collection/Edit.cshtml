@@ -9,10 +9,6 @@
 <h4>Collection</h4>
 <hr />
 
-<p>
-    <a asp-controller="Notecards" asp-action="CreateOnCollection" asp-route-id="@Model.Id">Add Notecard</a>
-</p>
-
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -28,13 +24,15 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <p>
+                <a asp-controller="Notecards" asp-action="GetOnCollection" asp-route-id="@Model.Id">Manage Notecards</a>
+            </p>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
