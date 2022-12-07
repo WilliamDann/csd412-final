@@ -1,13 +1,11 @@
 @model IEnumerable<csd412_final.Models.Notecards>
-
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
 <p>
-    <a asp-action="CreateOnCollection" asp-route-id="@Model.ElementAt(0).CollectionID">Create New</a>
+    <a asp-action="CreateOnCollection" asp-route-id="@this.ViewContext.RouteData.Values["collectionID"]">Create New</a>
 </p>
 
 <table class="table">

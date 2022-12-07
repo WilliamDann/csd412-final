@@ -68,7 +68,7 @@ namespace csd412_final.Controllers
             {
                 _context.Add(notecards);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("GetOnCollection", new { id= notecards.CollectionID });
             }
             return View(notecards);
         }
