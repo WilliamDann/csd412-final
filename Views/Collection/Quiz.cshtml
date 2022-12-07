@@ -20,7 +20,7 @@ function showCard()
     for (let decoy of cards[counter].decoys)
     {
         let btn = document.createElement('button');
-        btn.onclick = 'onIncorrect()';
+        btn.onclick = () => onIncorrect();
         btn.innerHTML = decoy;
         back.querySelector('#decoyContainer').appendChild(btn);
     }
