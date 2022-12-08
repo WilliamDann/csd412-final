@@ -4,25 +4,44 @@
     ViewData["Title"] = "Quiz";
 }
 
+<!-- Confetti Lib -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
 <script>
 
 let cards   = @Html.Raw(Json.Serialize(Model));
 let counter = 0;
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 function showCard()
 {
     let front = document.querySelector("#front");
     let back  = document.querySelector("#back");
-
     front.querySelector('#cardMainDisplay').innerHTML = cards[counter].question;
-    back.querySelector('#correct').innerHTML          = cards[counter].answer;
-    back.querySelector('#decoyContainer').innerHTML   = "";
+    back.querySelector('#itemsContainer').innerHTML   = "";
+
+    cards[counter].decoys.push(cards[counter].answer)
+    shuffleArray(cards[counter].decoys);
+
     for (let decoy of cards[counter].decoys)
     {
         let btn = document.createElement('button');
-        btn.onclick = () => onIncorrect();
+
+        if (decoy == cards[counter].answer)
+            btn.onclick = () => onCorrect();
+        else
+            btn.onclick = () => onIncorrect();
+
         btn.innerHTML = decoy;
-        back.querySelector('#decoyContainer').appendChild(btn);
+        back.querySelector('#itemsContainer').appendChild(btn);
     }
 }
 
@@ -44,8 +63,13 @@ function flipCard()
 
 function onCorrect()
 {
-    alert("Correct");
     counter += 1;
+    confetti({
+            particleCount: 100,
+            spread: 200,
+            origin: { y: 0.6 },
+            ticks: 20
+          });
     showCard();
     flipCard();
 }
@@ -92,8 +116,7 @@ function onIncorrect()
     </div><br>
 
     <div class="card" id="back" style="display: none;">
-        <button id="correct"   onclick="onCorrect()"></button>
-        <div id="decoyContainer"></div>
+        <div id="itemsContainer"></div>
         <button class="flipbutton" onclick="flipCard()">Flip</button>
     </div><br>
 </div>
