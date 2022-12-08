@@ -4,6 +4,9 @@
     ViewData["Title"] = "Quiz";
 }
 
+<!-- Confetti Lib -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
 <script>
 
 let cards   = @Html.Raw(Json.Serialize(Model));
@@ -60,8 +63,13 @@ function flipCard()
 
 function onCorrect()
 {
-    alert("Correct");
     counter += 1;
+    confetti({
+            particleCount: 100,
+            spread: 200,
+            origin: { y: 0.6 },
+            ticks: 20
+          });
     showCard();
     flipCard();
 }
